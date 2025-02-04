@@ -45,6 +45,13 @@ class Snake:
         segment.goto(position) 
         self.snake_body.append(segment) 
 
+    def extend_snake(self): 
+        """ 
+        Adds a new segment to the snake at the position  
+        of the last segment. 
+        """ 
+        self.add_segment(self.snake_body[-1].position()) 
+
     def move(self): 
         """ 
         Moves the snake forward by updating the position of 

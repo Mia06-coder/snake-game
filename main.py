@@ -41,8 +41,9 @@ def main():
         snake.move() # Move the snake forward 
 
         # Check for collision with food 
-        if (snake.head.xcor() == food.xcor() and snake.head.ycor() == food.ycor()):
+        if snake.head.distance(food) < 8: 
             food.display_food() # Display food on new location
+            snake.extend_snake()
 
     # Exit the game on click 
     screen.exitonclick()
