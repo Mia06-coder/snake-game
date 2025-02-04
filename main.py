@@ -1,5 +1,6 @@
 from turtle import Screen 
 from snake import Snake 
+from food import Food
 import time 
 
 SCREEN_SIZE = 500 # Screen size constant 
@@ -23,6 +24,7 @@ def main():
 
     # Create instances of game entities 
     snake = Snake() 
+    food = Food()
 
     # Control keys for snake's movement 
     screen.listen() 
@@ -37,6 +39,10 @@ def main():
         screen.update() # Refresh the screen to show current state 
         time.sleep(MOVE_DELAY) # Control the speed of the game 
         snake.move() # Move the snake forward 
+
+        # Check for collision with food 
+        if (snake.head.xcor() == food.xcor() and snake.head.ycor() == food.ycor()):
+            food.display_food() # Display food on new location
 
     # Exit the game on click 
     screen.exitonclick()
