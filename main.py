@@ -24,6 +24,13 @@ def main():
     # Create instances of game entities 
     snake = Snake() 
 
+    # Control keys for snake's movement 
+    screen.listen() 
+    screen.onkey(snake.up,"Up") # Move the snake up 
+    screen.onkey(snake.down,"Down") # Move the snake down 
+    screen.onkey(snake.left, "Left") # Move the snake left 
+    screen.onkey(snake.right,"Right") # Move the snake right 
+
     # Main game loop 
     game_on = True 
     while game_on:

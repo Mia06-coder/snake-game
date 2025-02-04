@@ -11,6 +11,11 @@ STARTING_POSITIONS = [
     (-3*BODY_SIZE,0)
 ] # Initial positions of the snake segments 
 
+UP = 90 # Heading angle for upward movement 
+DOWN = 270 # Heading angle for downward movement 
+LEFT = 180 # Heading angle for leftward movement 
+RIGHT = 0 # Heading angle for rightward movement 
+
 class Snake:
     def __init__(self): 
          """ 
@@ -33,7 +38,7 @@ class Snake:
         """
         Adds a new segment to the snake at the specified position. 
         """ 
-        segment = Turtle("square")
+        segment = Turtle("circle")
         segment.color("green")
         segment.penup() 
         segment.shapesize(stretch_len=STRETCH_SIZE, stretch_wid=STRETCH_SIZE)
@@ -53,3 +58,37 @@ class Snake:
 
         # Move the head forward by MOVE_DIST 
         self.head.forward(MOVE_DIST)
+
+    def up(self): 
+        """
+        Change the direction of the snake to up if it's  
+        not currently heading down. 
+        """ 
+        if self.head.heading()!= DOWN: 
+            self.head.setheading(UP) 
+
+
+    def down(self): 
+        """ 
+        Change the direction of the snake to down if it's  
+        not currently heading up. 
+        """ 
+        if self.head.heading()!= UP: 
+            self.head.setheading(DOWN) 
+
+    def left(self):  
+        """ 
+        Change the direction of the snake to left if it's  
+        not currently heading right. 
+        """ 
+        if self.head.heading()!= RIGHT: 
+            self.head.setheading(LEFT) 
+
+    def right(self): 
+        """ 
+        Change the direction of the snake to right if  
+        it's not currently heading left. 
+        """ 
+        if self.head.heading()!= LEFT: 
+            self.head.setheading(RIGHT) 
+            
