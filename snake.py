@@ -3,11 +3,12 @@ from turtle import Turtle
 # Constants for snake behaviour and movement 
 STRETCH_SIZE = 0.5 
 DEFAULT_SIZE = 20 
+BODY_SIZE = MOVE_DIST = DEFAULT_SIZE*STRETCH_SIZE 
 STARTING_POSITIONS = [
     (0,0), 
-    (-DEFAULT_SIZE*STRETCH_SIZE,0),
-    (-2*DEFAULT_SIZE*STRETCH_SIZE,0),
-    (-3*DEFAULT_SIZE*STRETCH_SIZE,0)
+    (-BODY_SIZE,0),
+    (-2*BODY_SIZE,0),
+    (-3*BODY_SIZE,0)
 ] # Initial positions of the snake segments 
 
 class Snake:
@@ -38,3 +39,17 @@ class Snake:
         segment.shapesize(stretch_len=STRETCH_SIZE, stretch_wid=STRETCH_SIZE)
         segment.goto(position) 
         self.snake_body.append(segment) 
+
+    def move(self): 
+        """ 
+        Moves the snake forward by updating the position of 
+        each segment, starting from the tail. 
+        """ 
+        # Shift all segments except the head to the position of the segment in front of them
+        for seg_num in range(len(self.snake_body) - 1, 0, -1): 
+            new_x = self.snake_body[seg_num - 1].xcor() 
+            new_y = self.snake_body[seg_num - 1].ycor() 
+            self.snake_body[seg_num].goto(new_x, new_y) 
+
+        # Move the head forward by MOVE_DIST 
+        self.head.forward(MOVE_DIST)

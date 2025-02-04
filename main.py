@@ -29,6 +29,7 @@ def main():
     while game_on:
         screen.update() # Refresh the screen to show current state 
         time.sleep(MOVE_DELAY) # Control the speed of the game 
+        snake.move() # Move the snake forward 
 
     # Exit the game on click 
     screen.exitonclick()
